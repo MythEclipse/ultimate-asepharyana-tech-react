@@ -125,7 +125,7 @@ export function MediaListPage<T>({
                </div>
              ))}
            </div>
-           <PaginationControl pagination={data.pagination} baseUrl={baseUrl} variant={variant} />
+           {data.pagination && <PaginationControl pagination={data.pagination} baseUrl={baseUrl} variant={variant} />}
          </div>
       </Section>
     </main>
