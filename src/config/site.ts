@@ -12,7 +12,6 @@ export const siteConfig = {
   mainNav: [
     { name: "Home", link: "/" },
     { name: "Projects", link: "/project" },
-    { name: "Dashboard", link: "/dashboard" },
   ],
 };
 
