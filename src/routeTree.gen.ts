@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ProjectRouteImport } from './routes/project'
 import { Route as KomikRouteImport } from './routes/komik'
-import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as Anime2RouteImport } from './routes/anime2'
 import { Route as AnimeRouteImport } from './routes/anime'
 import { Route as IndexRouteImport } from './routes/index'
@@ -47,11 +46,6 @@ const ProjectRoute = ProjectRouteImport.update({
 const KomikRoute = KomikRouteImport.update({
   id: '/komik',
   path: '/komik',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DashboardRoute = DashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Anime2Route = Anime2RouteImport.update({
@@ -159,7 +153,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/anime': typeof AnimeRouteWithChildren
   '/anime2': typeof Anime2RouteWithChildren
-  '/dashboard': typeof DashboardRoute
   '/komik': typeof KomikRouteWithChildren
   '/project': typeof ProjectRoute
   '/settings': typeof SettingsRoute
@@ -183,7 +176,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
   '/project': typeof ProjectRoute
   '/settings': typeof SettingsRoute
   '/anime/search': typeof AnimeSearchRoute
@@ -209,7 +201,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/anime': typeof AnimeRouteWithChildren
   '/anime2': typeof Anime2RouteWithChildren
-  '/dashboard': typeof DashboardRoute
   '/komik': typeof KomikRouteWithChildren
   '/project': typeof ProjectRoute
   '/settings': typeof SettingsRoute
@@ -237,7 +228,6 @@ export interface FileRouteTypes {
     | '/'
     | '/anime'
     | '/anime2'
-    | '/dashboard'
     | '/komik'
     | '/project'
     | '/settings'
@@ -261,7 +251,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/dashboard'
     | '/project'
     | '/settings'
     | '/anime/search'
@@ -286,7 +275,6 @@ export interface FileRouteTypes {
     | '/'
     | '/anime'
     | '/anime2'
-    | '/dashboard'
     | '/komik'
     | '/project'
     | '/settings'
@@ -313,7 +301,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnimeRoute: typeof AnimeRouteWithChildren
   Anime2Route: typeof Anime2RouteWithChildren
-  DashboardRoute: typeof DashboardRoute
   KomikRoute: typeof KomikRouteWithChildren
   ProjectRoute: typeof ProjectRoute
   SettingsRoute: typeof SettingsRoute
@@ -340,13 +327,6 @@ declare module '@tanstack/react-router' {
       path: '/komik'
       fullPath: '/komik'
       preLoaderRoute: typeof KomikRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/anime2': {
@@ -555,7 +535,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnimeRoute: AnimeRouteWithChildren,
   Anime2Route: Anime2RouteWithChildren,
-  DashboardRoute: DashboardRoute,
   KomikRoute: KomikRouteWithChildren,
   ProjectRoute: ProjectRoute,
   SettingsRoute: SettingsRoute,
