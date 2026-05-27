@@ -13,10 +13,12 @@ export const Route = createFileRoute("/komik/$category/$page")({
     const safeCategory = parsedCategory!
     const config = getKomikCategoryConfig(safeCategory)
     const pageNum = parseInt(page, 10)
+    const categoryLabel = safeCategory.charAt(0).toUpperCase() + safeCategory.slice(1)
+    const title = `${categoryLabel} - Page ${isNaN(pageNum) ? 1 : pageNum}`
 
     return (
       <>
-        <Helmet><title>{safeCategory.charAt(0).toUpperCase() + safeCategory.slice(1)} - Page {isNaN(pageNum) ? 1 : pageNum}</title></Helmet>
+        <Helmet><title>{title}</title></Helmet>
         <KomikListPage page={isNaN(pageNum) ? 1 : pageNum} fetchFn={config.fetchFn} queryKeyBase={config.queryKeyBase} baseUrl={config.baseUrl} variant={safeCategory} heroExpose={config.hero} />
       </>
     )

@@ -6,9 +6,10 @@ export const Route = createFileRoute("/anime2/ongoing-anime/$page")({
   component: () => {
     const { page } = Route.useParams()
     const pageNum = parseInt(page, 10)
+    const title = `Ongoing Anime - Page ${isNaN(pageNum) ? 1 : pageNum}`
     return (
       <>
-        <Helmet><title>Ongoing Anime - Page {pageNum}</title></Helmet>
+        <Helmet><title>{title}</title></Helmet>
         <AnimeListPage source={2} page={isNaN(pageNum) ? 1 : pageNum} type="ongoing" />
       </>
     )
