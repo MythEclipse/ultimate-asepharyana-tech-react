@@ -14,7 +14,7 @@ export const FEATURED_PROJECTS: Project[] = [
     title: 'Rust Infrastructure',
     description:
       'Backend API system yang dibangun menggunakan framework Axum dan ORM SeaORM di Rust.',
-    image: '/project-rust.png',
+    image: '/project-rust.png?v=20260527',
     category: 'Backend',
     tags: ['Rust', 'Axum', 'SeaORM'],
     link: 'https://rust.asepharyana.tech/docs/',
@@ -24,7 +24,7 @@ export const FEATURED_PROJECTS: Project[] = [
     title: 'Elysia Discovery',
     description:
       'Layanan REST API yang dibuat berfokus pada kecepatan menggunakan ElysiaJS dan runtime Bun.',
-    image: '/project-elysia.png',
+    image: '/project-elysia.png?v=20260527',
     category: 'API',
     tags: ['Bun', 'ElysiaJS', 'OpenAPI'],
     link: 'https://elysia.asepharyana.tech/docs/',
@@ -38,27 +38,27 @@ export const MEDIA_PROJECTS: Project[] = [
     title: 'Anime Streaming',
     description:
       'Aplikasi penampil video anime yang mengambil data rilis terbaru dari Otakudesu.',
-    image: '/project-anime.png',
+    image: '/project-anime.png?v=20260527',
     category: 'Otakudesu',
     tags: ['Video', 'Streaming', 'Scraper'],
-    link: '/anime/source-1',
+    link: '/anime',
   },
   {
     id: 'media-02',
     title: 'Anime Archive',
     description:
       'Situs arsip dan pencarian database anime yang memanfaatkan parsing dari Alqanime.',
-    image: '/project-anime2.png',
+    image: '/project-anime2.png?v=20260527',
     category: 'Alqanime',
     tags: ['Archive', 'Search', 'Index'],
-    link: '/anime/source-2',
+    link: '/anime2',
   },
   {
     id: 'media-03',
     title: 'Komik Reader',
     description:
       'Aplikasi baca komik dan manga berbasis web untuk chapter terindeks dari Komiku.',
-    image: '/project-komik.png',
+    image: '/project-komik.png?v=20260527',
     category: 'Komiku',
     tags: ['Manga', 'Reader', 'High-Res'],
     link: '/komik',

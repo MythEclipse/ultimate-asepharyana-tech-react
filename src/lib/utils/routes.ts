@@ -3,7 +3,7 @@ export type AnimeListType = "ongoing" | "complete"
 export type KomikCategory = "manga" | "manhwa" | "manhua"
 
 export function animeCanonicalPrefix(source: AnimeSource): string {
-  return `/anime/source-${source}`
+  return `/${animePrefix(source)}`
 }
 
 export function animePrefix(source: AnimeSource): "anime" | "anime2" {
