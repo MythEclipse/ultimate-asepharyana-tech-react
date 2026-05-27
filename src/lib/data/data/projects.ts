@@ -11,13 +11,13 @@ export interface Project {
 export const FEATURED_PROJECTS: Project[] = [
   {
     id: '01',
-    title: 'Rust Infrastructure',
+    title: 'Scraper Infrastructure',
     description:
       'Backend API system yang dibangun menggunakan framework Axum dan ORM SeaORM di Rust.',
     image: '/project-rust.png?v=20260527',
     category: 'Backend',
     tags: ['Rust', 'Axum', 'SeaORM'],
-    link: 'https://rust.asepharyana.tech/docs/',
+    link: 'https://scraper.asepharyana.tech/docs/',
   },
   {
     id: '02',

@@ -73,8 +73,8 @@ interface DashboardClientProps {
     traefikRequests: number
     elysiaRequests: number
     elysiaMemory: number
-    rustRequests: number
-    rustActive: number
+    scraperRequests: number
+    scraperActive: number
   }
   initialHistory: {
     load: { time: number; value: number }[]
@@ -95,7 +95,7 @@ export function DashboardClient({ initialMetrics, initialHistory }: DashboardCli
   const loadMetrics = useCallback(async () => {
     const range = TIME_RANGES.find(r => r.value === timeRange)?.minutes || 60
     
-    const [load1, memUsed, memTotal, redisClients, redisMemory, minioNodes, traefikRequests, elysiaRequests, elysiaMemory, rustRequests, rustActive, loadHistory, memHistory] = await Promise.all([
+    const [load1, memUsed, memTotal, redisClients, redisMemory, minioNodes, traefikRequests, elysiaRequests, elysiaMemory, scraperRequests, scraperActive, loadHistory, memHistory] = await Promise.all([
       fetchMetric("node_load1"),
       fetchMetric("node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes"),
       fetchMetric("node_memory_MemTotal_bytes"),
@@ -121,8 +121,8 @@ export function DashboardClient({ initialMetrics, initialHistory }: DashboardCli
       traefikRequests,
       elysiaRequests,
       elysiaMemory,
-      rustRequests,
-      rustActive,
+      scraperRequests,
+      scraperActive,
     })
     setHistory({ load: loadHistory, memory: memHistory })
     setLastUpdate(new Date().toLocaleTimeString())
@@ -252,8 +252,8 @@ export function DashboardClient({ initialMetrics, initialHistory }: DashboardCli
             <p className="text-[8px] text-muted-foreground">Total Requests</p>
           </Card>
           <Card className="p-4 bg-gradient-to-br from-orange-500/5 to-transparent">
-            <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/50 mb-2">Rust API</p>
-            <p className="text-2xl font-black tracking-tight text-foreground">{formatNumberClient(metrics.rustRequests)}</p>
+            <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/50 mb-2">Scraper API</p>
+            <p className="text-2xl font-black tracking-tight text-foreground">{formatNumberClient(metrics.scraperRequests)}</p>
             <p className="text-[8px] text-muted-foreground">Total Requests</p>
           </Card>
           <Card className="p-4 bg-gradient-to-br from-amber-500/5 to-transparent">
@@ -368,18 +368,18 @@ export function DashboardClient({ initialMetrics, initialHistory }: DashboardCli
                 <IconBrandRust size={16} />
               </div>
               <div>
-                <h3 className="text-sm font-black uppercase">Rust</h3>
+                <h3 className="text-sm font-black uppercase">Scraper</h3>
                 <p className="text-[8px] font-bold text-emerald-400 uppercase">Online</p>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-2 text-xs">
               <div className="p-2 rounded-lg bg-muted/10">
                 <p className="text-[8px] text-muted-foreground/50 uppercase">Requests</p>
-                <p className="font-black">{formatNumberClient(metrics.rustRequests)}</p>
+                <p className="font-black">{formatNumberClient(metrics.scraperRequests)}</p>
               </div>
               <div className="p-2 rounded-lg bg-muted/10">
                 <p className="text-[8px] text-muted-foreground/50 uppercase">Pending</p>
-                <p className="font-black">{metrics.rustActive}</p>
+                <p className="font-black">{metrics.scraperActive}</p>
               </div>
             </div>
           </Card>
