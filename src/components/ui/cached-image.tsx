@@ -3,7 +3,6 @@
 
 import { useEffect, useMemo, useState } from "react"
 
-import { API_BASE_URL } from "@/lib/api/config"
 import { cn } from "@/lib/utils"
 
 interface CachedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -50,15 +49,11 @@ export function CachedImage({
   const [resolvedSrc, setResolvedSrc] = useState(normalizedSrc)
   const [loadState, setLoadState] = useState<"idle" | "loading" | "loaded" | "error">("loading")
   const [attempt, setAttempt] = useState(0)
-  const [isAuditing, setIsAuditing] = useState(false)
-  const [hasAudited, setHasAudited] = useState(false)
 
 useEffect(() => {
     setResolvedSrc(normalizedSrc)
     setLoadState("loading")
     setAttempt(0)
-    setIsAuditing(false)
-    setHasAudited(false)
   }, [normalizedSrc])
 
   const imageSrc = loadState === "error" ? fallbackSrc : resolvedSrc
@@ -75,35 +70,6 @@ useEffect(() => {
     : "w-full h-auto"
 
   const effectiveLoading = eager ? "eager" : loading
-  const isFallback = imageSrc === fallbackSrc
-
-  async function auditImage(srcUrl: string) {
-    if (!srcUrl || srcUrl === fallbackSrc || hasAudited) return
-
-    setIsAuditing(true)
-    setHasAudited(true)
-
-    try {
-      const response = await fetch(`${API_BASE_URL}/proxy/image-cache`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ url: srcUrl }),
-      })
-
-      if (!response.ok) {
-        console.warn(`Image audit failed status ${response.status}`)
-        return
-      }
-
-      await response.json()
-    } catch (err) {
-      console.warn("Image audit failed", err)
-    } finally {
-      setIsAuditing(false)
-    }
-  }
 
   const imgStyles = useMemo(
     () =>
@@ -126,7 +92,7 @@ useEffect(() => {
   return (
     <div className={wrapperClass}>
       {loadState !== "loaded" && loadState !== "error" && placeholderBlur && (
-        <div 
+        <div
           className={cn("absolute inset-0 bg-cover bg-center blur-xl scale-110", fallbackCls)}
           style={{ backgroundImage: `url(${placeholderBlur})` }}
         />
@@ -161,7 +127,7 @@ useEffect(() => {
           loading={effectiveLoading}
           className={imgStyles}
           onLoad={() => setLoadState("loaded")}
-          onError={async () => {
+          onError={() => {
             if (attempt < maxAttempts) {
               setAttempt((prev) => prev + 1)
               setLoadState("loading")
@@ -169,20 +135,10 @@ useEffect(() => {
               return
             }
 
-            if (!isFallback && !hasAudited) {
-              await auditImage(resolvedSrc)
-            }
-
             setLoadState("error")
           }}
           {...props}
         />
-      )}
-
-      {isAuditing && (
-        <div className="absolute inset-0 flex items-center justify-center text-xs text-muted-foreground">
-          Optimizing image source...
-        </div>
       )}
     </div>
   )
