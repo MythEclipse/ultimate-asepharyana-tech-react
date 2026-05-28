@@ -1,4 +1,4 @@
-export const API_BASE_URL = import.meta.env.VITE_API_URL || "https://scraper.asepharyana.tech/api"
+export const API_BASE_URL = import.meta.env.VITE_API_URL || "https://scraper.asepharyana.my.id/api"
 
 export async function fetchApi<T>(endpoint: string, options?: RequestInit): Promise<T> {
   const url = `${API_BASE_URL}${endpoint}`
