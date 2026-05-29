@@ -32,7 +32,8 @@
   --animate-shimmer: shimmer 2s linear infinite;
   --animate-spotlight: spotlight 2s ease .75s 1 forwards;
   --animate-float: float 6s ease-in-out infinite;
-  
+  --animate-orbit-slow: orbit-slow 18s linear infinite;
+
   @keyframes spotlight {
     0% { opacity: 0; transform: translate(-72%, -62%) scale(0.5); }
     100% { opacity: 1; transform: translate(-50%,-40%) scale(1); }
@@ -44,6 +45,10 @@
   @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
+  }
+  @keyframes orbit-slow {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
   }
 
   @keyframes anime-pulse {
@@ -256,6 +261,10 @@
   animation: fade-in 0.35s ease-out forwards;
 }
 
+.animate-orbit-slow {
+  animation: orbit-slow 18s linear infinite;
+}
+
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(24px) scale(0.98); }
   to { opacity: 1; transform: translateY(0) scale(1); }
@@ -351,4 +360,15 @@ a:focus-visible {
 
 .animate-pulse-slow {
   animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

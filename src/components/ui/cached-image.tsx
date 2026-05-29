@@ -119,7 +119,6 @@ useEffect(() => {
       )}
 
       {imageSrc && (
-        /* eslint-disable-next-line @next/next/no-img-element */
         <img
           key={`${imageSrc}-${attempt}`}
           src={imageSrc}

@@ -1,31 +1,41 @@
 import tsPlugin from "@typescript-eslint/eslint-plugin";
+import tsParser from "@typescript-eslint/parser";
+import reactPlugin from "eslint-plugin-react";
 import { defineConfig } from "eslint/config";
-import nextConfig from "eslint-config-next";
 
 export default defineConfig([
   {
     ignores: [
       ".opencode/**",
-      ".next/**",
+      "dist/**",
       "out/**",
       "build/**",
       "node_modules/**",
-      "next-env.d.ts",
+      "src/routeTree.gen.ts",
     ],
   },
-  ...nextConfig,
   {
+    files: ["**/*.{ts,tsx}"],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+        ecmaVersion: "latest",
+        projectService: {
+          allowDefaultProject: ["*.config.ts", "*.config.mjs"],
+        },
+        sourceType: "module",
+      },
+    },
     plugins: {
       "@typescript-eslint": tsPlugin,
+      react: reactPlugin,
     },
     settings: {
       react: {
         version: "detect",
-      },
-      "import/resolver": {
-        typescript: {
-          project: ["./tsconfig.json"],
-        },
       },
     },
     rules: {
@@ -39,20 +49,6 @@ export default defineConfig([
           caughtErrorsIgnorePattern: "^_",
         },
       ],
-      "import/order": [
-        "warn",
-        {
-          groups: ["builtin", "external", "internal", "parent", "sibling", "index"],
-          "newlines-between": "always",
-          alphabetize: {
-            order: "asc",
-            caseInsensitive: true,
-          },
-        },
-      ],
-      "import/no-unresolved": "error",
-      "jsx-a11y/anchor-is-valid": "off",
-      "react-hooks/set-state-in-effect": "off",
     },
   },
 ]);

@@ -56,8 +56,6 @@ export interface ChapterResponse {
   data: ChapterData;
 }
 
-const REVALIDATE_TIME = 3600;
-
 async function fetchKomikType(type: "manga" | "manhwa" | "manhua", page: number): Promise<MangaResponse> {
   return fetchMediaList("komik", type, page) as Promise<MangaResponse>
 }

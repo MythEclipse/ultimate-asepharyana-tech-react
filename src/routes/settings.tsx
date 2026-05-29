@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router"
-import { Helmet } from "react-helmet-async"
+
 import { useTheme } from "@/hooks/use-theme"
 
 function SettingsPage() {

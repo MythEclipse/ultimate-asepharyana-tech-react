@@ -116,8 +116,6 @@ export interface AnimeFullData {
 
 export type AnimeSource = 1 | 2;
 
-const REVALIDATE_TIME = 3600;
-
 const ANIME_SOURCE_PREFIX: Record<AnimeSource, string> = {
   1: "/anime",
   2: "/anime2",

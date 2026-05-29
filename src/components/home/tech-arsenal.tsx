@@ -1,34 +1,49 @@
 "use client";
 
-
+import { IconCode, IconSatellite } from "@tabler/icons-react";
 
 import { Badge } from "@/components/ui/badge";
+import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { Section } from "@/components/ui/section";
 import { TECH_STACK } from "@/lib/data/tech-stack";
 
 export function TechArsenal() {
   return (
-    <Section className="py-24 w-full" glow>
-      <div className="mb-16 text-center lg:text-left">
-        <Badge variant="glass" className="mb-4">Capabilities</Badge>
-        <h2 className="text-4xl md:text-6xl font-black text-foreground tracking-tighter">Beginner <span className="text-foreground">Tech Stack</span></h2>
-        <p className="text-muted-foreground mt-4 max-w-xl text-lg mx-auto lg:mx-0">Core tools and frameworks I am currently exploring in practice projects (React, Tailwind, Next.js).</p>
+    <Section className="w-full py-24" glow>
+      <div className="mb-16 flex flex-col gap-6 text-center lg:flex-row lg:items-end lg:justify-between lg:text-left">
+        <div>
+          <Badge variant="glass" className="mb-4 gap-2 px-4 py-2 uppercase tracking-[0.22em]">
+            <IconSatellite className="h-3.5 w-3.5 text-primary" /> Capabilities
+          </Badge>
+          <h2 className="text-balance text-4xl font-black tracking-[-0.05em] text-foreground md:text-6xl">
+            Beginner <span className="text-gradient">Tech Stack</span>
+          </h2>
+        </div>
+        <p className="mx-auto max-w-xl text-lg leading-relaxed text-muted-foreground lg:mx-0">
+          Core tools yang sedang saya eksplorasi lewat practice projects — divisualkan sebagai command deck interaktif.
+        </p>
       </div>
 
-      <div className="grid md:auto-rows-[18rem] grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto">
+      <BentoGrid className="px-0">
         {TECH_STACK.slice(0, 6).map((item, index) => (
-          <div key={item.name} className={"row-span-1 rounded-xl group/bento hover:shadow-lg hover:shadow-primary/5 transition duration-300 p-4 bg-card border border-border/10 dark:border-white/5 justify-between flex flex-col space-y-3 hover:border-primary/30 hover:-translate-y-0.5 " + (index === 0 || index === 3 ? "md:col-span-2" : "")}>
-            <div className="group/header h-full min-h-36 rounded-lg glass border-hairline/50 flex items-center justify-center p-6 transition-all hover:bg-foreground/5 overflow-hidden relative">
-              <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 group-hover/header:opacity-100 transition-opacity" />
-              <img src={item.image} alt={item.name} loading="lazy" className="w-14 h-14 object-contain filter drop-shadow-2xl group-hover:scale-125 transition-transform duration-500" />
-            </div>
-            <div className="group-hover/bento:translate-x-2 transition duration-200">
-              <div className="font-sans font-bold text-foreground mb-2 mt-2">{item.name}</div>
-              <div className="font-sans font-normal text-muted-foreground text-xs">{item.description}</div>
-            </div>
-          </div>
+          <BentoGridItem
+            key={item.name}
+            className={index === 0 || index === 3 ? "md:col-span-2" : ""}
+            title={item.name}
+            description={item.description}
+            icon={<IconCode className="mb-2 h-5 w-5 text-primary" />}
+            header={
+              <div className="group/header relative flex h-full min-h-40 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-background/35 p-6">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,hsl(var(--primary)/.28),transparent_42%),linear-gradient(135deg,hsl(var(--accent)/.12),transparent)] opacity-80 transition duration-500 group-hover/header:opacity-100" />
+                <div className="absolute inset-x-8 top-1/2 h-px bg-linear-to-r from-transparent via-primary/35 to-transparent" />
+                <div className="relative rounded-3xl border border-primary/15 bg-background/45 p-5 shadow-2xl shadow-primary/15 transition duration-500 group-hover/header:scale-110 group-hover/header:rotate-3">
+                  <img src={item.image} alt={item.name} loading="lazy" className="h-14 w-14 object-contain drop-shadow-2xl" />
+                </div>
+              </div>
+            }
+          />
         ))}
-      </div>
+      </BentoGrid>
     </Section>
   );
 }
