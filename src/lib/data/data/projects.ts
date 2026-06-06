@@ -17,7 +17,7 @@ export const FEATURED_PROJECTS: Project[] = [
     image: '/project-rust.png?v=20260527',
     category: 'Backend',
     tags: ['Rust', 'Axum', 'SeaORM'],
-    link: 'https://scraper.asepharyana.tech/docs/',
+    link: 'https://scraper.asepharyana.my.id/docs/',
   },
   {
     id: '02',
@@ -27,7 +27,7 @@ export const FEATURED_PROJECTS: Project[] = [
     image: '/project-elysia.png?v=20260527',
     category: 'API',
     tags: ['Bun', 'ElysiaJS', 'OpenAPI'],
-    link: 'https://elysia.asepharyana.tech/docs/',
+    link: 'https://elysia.asepharyana.my.id/docs/',
   },
 
 ];

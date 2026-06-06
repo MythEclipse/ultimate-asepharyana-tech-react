@@ -22,7 +22,7 @@ interface SeoParams {
 }
 
 const SITE_NAME = "Asep Haryana Portfolio"
-const SITE_URL = "https://asepharyana.tech"
+const SITE_URL = "https://asepharyana.my.id"
 const DEFAULT_IMAGE = "/default.png"
 
 export function createSeoData({

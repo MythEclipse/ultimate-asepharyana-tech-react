@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Asep Haryana Saputra",
-  url: "https://ultimate-asepharyana.tech",
-  ogImage: "https://ultimate-asepharyana.tech/og.png",
+  url: "https://asepharyana.my.id",
+  ogImage: "https://asepharyana.my.id/og.png",
   description: "Crafting robust Backend systems with high-performance Frontend solutions to build seamless digital experiences.",
   links: {
     github: "https://github.com/MythEclipse",
